@@ -19,7 +19,7 @@ export default function Timetable() {
           5:["12:20","1:10"],6:["1:10","2:00"],7:["2:00","2:50"],8:["2:50","3:40"],
           9:["3:40","4:30"],10:["4:30","5:20"]
         },
-        break_periods: [4, 8], // Break after period 4 (lunch) and period 8 (afternoon break)
+        break_periods: [4], // Break after period 4 (lunch only)
         faculties: [
           {id:"F1",name:"Alice"},{id:"F2",name:"Bob"},{id:"F3",name:"Charlie"},
           {id:"F4",name:"David"},{id:"F5",name:"Eve"},{id:"F6",name:"Frank"}
@@ -229,7 +229,7 @@ export default function Timetable() {
                   <th style={{border:'1px solid #555', padding:10, background:'#f2f2f2'}}>{day}</th>
                   {periods.map(p=>{
                     const cls = grid[di+1]?.[p];
-                    const isBreakPeriod = [4, 8].includes(p); // Break periods
+                    const isBreakPeriod = [4].includes(p); // Break periods (lunch only)
                     return (
                       <td key={p} style={{
                         border:'1px solid #555', 
@@ -240,9 +240,7 @@ export default function Timetable() {
                         {isBreakPeriod ? (
                           <div style={{textAlign:'center', fontWeight:'bold', color:'#d63031'}}>
                             <div>BREAK</div>
-                            <div style={{fontSize:'12px'}}>
-                              {p === 4 ? 'Lunch' : 'Afternoon'}
-                            </div>
+                            <div style={{fontSize:'12px'}}>Lunch</div>
                           </div>
                         ) : cls ? (
                           <div>
